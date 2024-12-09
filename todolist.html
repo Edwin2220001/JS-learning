@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+</head>
+
+<body>
+<ul id=""></ul>
+<input type="text" id="task-input" placeholder="Enter the text">
+<button id="add-task">Add Task</button>
+<script>
+    document.getElementById('add-task').addEventListener('click',() =>{
+        const task= document.getElementById('task-input').value;
+        if(task) {
+            const li= document.createElement('li');
+            li.textContent= task;
+            li.addEventListener('click', ()=> li.remove());
+            document.getElementById('')
+            document.getElementById('')
+        }
+    })
+</script>
+</body>
+
+</html>

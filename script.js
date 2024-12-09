@@ -1,7 +1,5 @@
-// let Value= 1000;
-// console.log(Value);
+// console.log("Hello from script.js!");
 
+import { Value } from "./external.js";
 
-
-import { Value } from "external";
 console.log(Value);
