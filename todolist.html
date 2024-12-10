@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<ul id=""></ul>
+<ul id="todo-list"></ul>
 <input type="text" id="task-input" placeholder="Enter the text">
 <button id="add-task">Add Task</button>
 <script>
@@ -17,10 +17,10 @@
             const li= document.createElement('li');
             li.textContent= task;
             li.addEventListener('click', ()=> li.remove());
-            document.getElementById('')
-            document.getElementById('')
+            document.getElementById('todo-list').appendChild(li);
+            document.getElementById('task-input').value= '';
         }
-    })
+    });
 </script>
 </body>
 
