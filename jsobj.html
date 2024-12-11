@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JSON</title>
+</head>
+<body>
+<h3>Json display</h3>
+<p id="demo"></p>
+
+<script>
+    const Jss= {name: "John", age: 30, city: "New York"};
+
+    document.getElementById("demo").innerHTML= Jss.name;
+    
+    const Jss2= '{"name": "John", "age": 30, "car": null}';
+    //Parsing a json file
+    const obj= JSON.parse(Jss2);
+    document.write(obj.car);
+
+</script>    
+
+</body>
+</html>
