@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regis form</title>
+    <link rel="stylesheet" href="">
+    
+    <style>
+        .entry input {
+            margin-right: 5px;
+            margin-top: 10px;
+        }
+        .entry button {
+            margin-left: 10px;
+        }
+        #addButton{
+            margin-top: 10px;
+            margin-left: 185px;
+        }
+
+    </style>
+</head>
+
+
+<body>
+    <h1>Registration Form</h1>
+    <form id="dynamicForm" action="">
+        <div id="En_cntnr">
+            <label for="">Name</label>
+            <input type="text" placeholder="Name">
+            <label for="">E-mail</label>
+            <input type="email" placeholder="e-mail">
+        </div>
+        <br>
+        <button id="addButton" type="button">Add</button>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        const En_cntnr= document.getElementById('En_cntnr');
+        const addButton= document.getElementById('addButton');
+
+        function createEntry(){
+            const entryDiv= document.createElement('div');
+            entryDiv.className= 'entry';
+
+            const nameLabel= document.createElement('label');
+            nameLabel.textContent= 'Name ';
+            const nameInput= document.createElement('input');
+            nameInput.type= 'text';
+            nameInput.name= 'name[]';
+            nameInput.placeholder= 'Name';
+            nameInput.required= true;
+
+            const emailLabel= document.createElement('label');
+            emailLabel.textContent= 'E-mail ';
+            const emailInput= document.createElement('input');
+            emailInput.type= 'email';
+            emailInput.name= 'email[]';
+            emailInput.placeholder= 'e-mail';
+            emailInput.required= true;
+
+            const removeButton = document.createElement('button');
+            removeButton.type= 'button';
+            removeButton.textContent = 'Remove';
+            removeButton.onclick = () => entryDiv.remove();
+
+            entryDiv.appendChild(nameLabel);
+            entryDiv.appendChild(nameInput);
+            entryDiv.appendChild(emailLabel);
+            entryDiv.appendChild(emailInput);
+            entryDiv.appendChild(removeButton);
+
+            En_cntnr.appendChild(entryDiv);
+        }
+        addButton.addEventListener('click', createEntry);
+
+        document.getElementById('dynamicForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData= new FormData(this);
+            console.log('Form data:');
+            for (let [key, value] of formData.entries()) {
+                console.log('${key}: ${value}');
+
+            }
+            alert('Form submitted. Click console for form details.');
+        });
+
+    </script>
+</body>
+</html>
