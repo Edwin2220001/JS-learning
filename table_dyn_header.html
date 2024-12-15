@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dyn Table</title>
+    <style>
+        *{
+            margin: 10px;
+            padding: 5px;
+        }
+        body{
+            justify-content: center;
+            align-content: center;
+            
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+
+
+<body>
+    <h1>Table dynamic headers</h1>
+    
+    <table id="data-table">
+        <thead>
+            
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <script>
+        let jsonData = [];
+
+        function loadJson() {
+            fetch('TabularJsonData.json')
+                .then(response => response.json())
+                .then(data => {
+                    jsonData = data;
+                    initializeTable();
+                })
+                .catch(error => {
+                    console.error('Error loading JSON:', error);
+                });
+        }
+
+        function renderTable() {
+            const tbody= document.querySelector('#data-table tbody');
+            tbody.innerHTML= jsonData.map((row, index) => `
+                <tr>
+                    <td>${row.id}</td>
+                    <td>${row.first_name}</td>
+                    <td>${row.last_name}</td>
+                    <td>${row.email}</td>
+                    <td>${row.gender}</td>
+                    <td>${row.ip_address}</td>
+                </tr>    
+            `).join('');
+        }
+
+        function renderTableHeaders(data){
+            const headers= Object.keys(data[0]);
+            const thead= document.querySelector('#data-table thead');
+            thead.innerHTML= `
+                <tr>
+                    ${headers.map(header=> `<th>${header}</th>`).join('')}
+                </tr>    
+            `;
+        }
+
+        function initializeTable() {
+            if (jsonData.length > 0) {
+                renderTableHeaders(jsonData);
+                renderTable();
+            }
+        }
+
+        loadJson(); 
+    </script>
+    </body>
+
+
+</html>
