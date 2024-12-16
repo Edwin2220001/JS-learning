@@ -75,8 +75,15 @@
             const thead= document.querySelector('#data-table thead');
             thead.innerHTML= `
                 <tr>
-                    ${headers.map(header=> `<th>${header}</th>`).join('')}
-                </tr>    
+                    ${headers.map(header => 
+                    `<th>${
+                        header
+                            .replace(/_./g, match => match[1].toUpperCase())
+                            .replace(/^./, first => first.toUpperCase())
+                            .replace(/([a-z])([A-Z])/g, '$1 $2')
+                    }</th>`
+                    ).join('')}
+                </tr>
             `;
         }
 
